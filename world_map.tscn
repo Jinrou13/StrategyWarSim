@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwpo2inb5au6f"]
+[gd_scene load_steps=4 format=3 uid="uid://bwpo2inb5au6f"]
 
 [ext_resource type="Texture2D" uid="uid://c16cnw38b6ynl" path="res://europemap.png" id="1_deu6t"]
 [ext_resource type="Script" uid="uid://tjioe7ecvypn" path="res://camera_2d.gd" id="2_4ojr4"]
+[ext_resource type="Script" uid="uid://dqibxow6q012" path="res://country_a_area.gd" id="3_4ojr4"]
 
 [node name="WorldMap" type="Node2D"]
 
@@ -13,7 +14,8 @@ script = ExtResource("2_4ojr4")
 
 [node name="Countries" type="Node2D" parent="."]
 
-[node name="Country_A" type="Polygon2D" parent="Countries"]
-polygon = PackedVector2Array(-196, -64, -175, -157, -117, -73)
+[node name="country_A_Area" type="Area2D" parent="Countries"]
+script = ExtResource("3_4ojr4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Countries/Country_A"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Countries/country_A_Area"]
+polygon = PackedVector2Array(-128, -85, -98, -51, -112, -33, -172, -24, -173, -39, -148, -75)
