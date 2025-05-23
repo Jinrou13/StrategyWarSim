@@ -1,16 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwpo2inb5au6f"]
+[gd_scene load_steps=9 format=3 uid="uid://bwpo2inb5au6f"]
 
 [ext_resource type="Texture2D" uid="uid://c16cnw38b6ynl" path="res://europemap.png" id="1_deu6t"]
-[ext_resource type="Script" uid="uid://tjioe7ecvypn" path="res://camera_2d.gd" id="2_4ojr4"]
+[ext_resource type="Script" uid="uid://2c1yk68otvjh" path="res://world_map.gd" id="1_ivuc1"]
+[ext_resource type="Script" uid="uid://bhvkjyxopm0a7" path="res://camera_2d_30.gd" id="2_ivuc1"]
 [ext_resource type="Script" uid="uid://dqibxow6q012" path="res://country_a_area.gd" id="3_4ojr4"]
+[ext_resource type="Script" uid="uid://cdp8k02mk5fy4" path="res://country_b_area.gd" id="4_vv781"]
+[ext_resource type="Script" uid="uid://bavmlegr02jwk" path="res://country_c_area.gd" id="5_hxymy"]
+[ext_resource type="Script" uid="uid://dbp0pdveke85i" path="res://country_info_panel.gd" id="5_idl5h"]
+[ext_resource type="Script" uid="uid://c600ex57rj2gk" path="res://country_d_area.gd" id="6_ivuc1"]
 
 [node name="WorldMap" type="Node2D"]
+script = ExtResource("1_ivuc1")
+
+[node name="Camera2D30" type="Camera2D" parent="."]
+script = ExtResource("2_ivuc1")
 
 [node name="MapSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_deu6t")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("2_4ojr4")
 
 [node name="Countries" type="Node2D" parent="."]
 
@@ -18,4 +24,53 @@ script = ExtResource("2_4ojr4")
 script = ExtResource("3_4ojr4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Countries/country_A_Area"]
-polygon = PackedVector2Array(-128, -85, -98, -51, -112, -33, -172, -24, -173, -39, -148, -75)
+polygon = PackedVector2Array(-134, -84, -134, -86, -132, -86, -129, -83, -126, -74, -121, -74, -114, -59, -105, -59, -104, -50, -111, -42, -107, -41, -111, -35, -165, -24, -169, -29, -155, -40, -157, -42, -161, -44, -161, -49, -154, -52, -158, -57, -156, -62, -145, -63, -144, -68, -147, -69, -147, -75, -142, -77)
+
+[node name="country_B_Area" type="Area2D" parent="Countries"]
+script = ExtResource("4_vv781")
+country_name = "Scottland"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Countries/country_B_Area"]
+polygon = PackedVector2Array(-134, -87, -126, -101, -135, -126, -185, -106, -156, -71)
+
+[node name="country_C_Area" type="Area2D" parent="Countries"]
+script = ExtResource("5_hxymy")
+country_name = "France"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Countries/country_C_Area"]
+polygon = PackedVector2Array(-134, -13, -134, -15, -135, -16, -135, -17, -134, -18, -134, -19, -135, -20, -136, -21, -136, -25, -130, -25, -130, -22, -125, -22, -125, -21, -121, -21, -121, -24, -117, -27, -114, -27, -114, -28, -111, -28, -108, -31, -108, -37, -104, -34, -105, -33, -105, -32, -104, -31, -103, -31, -101, -31, -100, -29, -96, -29, -96, -28, -92, -28, -90, -29, -90, -28, -88, -28, -88, -27, -84, -27, -80, -23, -80, -21, -78, -21, -78, -20, -77, -18, -79, -17, -78, -15, -76, -15, -76, -13, -77, -13, -77, -10, -75, -9, -75, -5, -75, -4, -77, -4, -77, -2, -78, -2, -79, -3, -81, -3, -82, -4, -82, -6, -80, -6, -80, -7, -83, -7, -85, -9, -87, -7, -87, -6, -86, -6, -86, -7, -84, -7, -84, -5, -85, -4, -87, -4, -89, -4, -89, -2, -91, -2, -93, -1, -95, 0, -96, 1, -95, 3, -95, 5, -88, 11, -88, 13, -89, 13, -89, 14, -87, 15, -86, 12, -83, 12, -83, 14, -84, 15, -82, 14, -82, 13, -80, 13, -80, 15, -77, 15, -77, 16, -76, 16, -76, 17, -75, 17, -75, 18, -72, 18, -71, 20, -71, 21, -71, 22, -70, 22, -70, 23, -67, 23, -67, 28, -69, 28, -69, 27, -71, 27, -71, 26, -73, 26, -73, 27, -75, 27, -76, 28, -76, 29, -77, 32, -78, 32, -79, 32, -79, 31, -80, 31, -80, 30, -81, 30, -81, 29, -82, 29, -82, 31, -84, 31, -84, 34, -86, 34, -86, 36, -87, 36, -87, 37, -89, 38, -89, 39, -98, 44, -98, 46, -100, 46, -102, 47, -104, 47, -106, 46, -106, 47, -107, 47, -109, 49, -112, 49, -112, 46, -114, 46, -118, 46, -118, 47, -125, 47, -125, 46, -129, 46, -129, 45, -132, 45, -132, 44, -134, 43, -134, 42, -133, 41, -133, 40, -131, 38, -131, 37, -132, 37, -132, 36, -135, 36, -135, 37, -136, 37, -136, 39, -137, 39, -137, 40, -138, 39, -138, 38, -137, 38, -137, 36, -135, 33, -135, 28, -134, 28, -134, 25, -131, 25, -131, 27, -129, 27, -129, 28, -128, 28, -128, 29, -127, 29, -127, 28, -125, 28, -125, 26, -123, 26, -123, 24, -126, 24, -126, 22, -127, 22, -128, 21, -130, 21, -130, 19, -131, 18, -133, 17, -135, 15, -135, 11, -139, 7, -139, 5, -138, 5, -138, 4, -137, 4, -137, 5, -133, 5, -133, 1, -133, 0, -131, 0, -131, -2, -132, -2, -132, -4, -131, -4, -131, -6, -130, -7, -132, -8, -130, -9, -130, -12, -131, -10, -133, -10, -133, -11)
+
+[node name="country_D_Area" type="Area2D" parent="Countries"]
+script = ExtResource("6_ivuc1")
+country_name = "Brittany"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Countries/country_D_Area"]
+polygon = PackedVector2Array(-140, 5, -140, 4, -139, 3, -139, 1, -141, 1, -141, 0, -143, 0, -143, -2, -145, -2, -145, -3, -147, -3, -147, -1, -148, -3, -151, -3, -151, -5, -154, -5, -154, -6, -156, -6, -156, -5, -158, -5, -159, -7, -162, -7, -161, -13, -159, -13, -159, -15, -152, -15, -150, -17, -145, -17, -144, -15, -142, -14, -141, -15, -138, -15, -138, -14, -137, -15, -136, -14, -134, -14, -134, -11, -133, -10, -131, -10, -130, -12, -130, -9, -132, -8, -130, -7, -131, -6, -131, -4, -132, -4, -132, -2, -131, -2, -131, -1, -131, 0, -133, 0, -133, 5, -137, 5, -137, 4, -138, 4, -138, 5)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CountryInfoPanel" type="Panel" parent="UI"]
+visible = false
+custom_minimum_size = Vector2(300, 150)
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 90.0
+offset_bottom = 90.0
+script = ExtResource("5_idl5h")
+
+[node name="CountryNameLabel" type="Label" parent="UI/CountryInfoPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "\"Country Name\""
+
+[node name="CloseButton" type="Button" parent="UI/CountryInfoPanel/CountryNameLabel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 264.0
+offset_bottom = 131.0
+text = "\"Close\""
+
+[connection signal="pressed" from="UI/CountryInfoPanel/CountryNameLabel/CloseButton" to="UI/CountryInfoPanel" method="_on_close_button_pressed"]
+[connection signal="pressed" from="UI/CountryInfoPanel/CountryNameLabel/CloseButton" to="UI/CountryInfoPanel" method="_on_close_pressed"]

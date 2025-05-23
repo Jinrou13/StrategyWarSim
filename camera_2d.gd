@@ -1,35 +1,18 @@
 extends Camera2D
 
-@export var speed := 400
+@export var move_speed := 6.0
+@export var zoom_speed := 20.0
+@export var default_zoom := Vector2(1, 1)
+@export var focus_zoom := Vector2(0.6, 0.6)
+@export var manual_speed := 400
 
 var dragging := false
 var drag_origin := Vector2.ZERO
-var drag_start := Vector2.ZERO
+var target_position: Vector2
+var target_zoom: Vector2
+var manually_moved := false
 
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT:
-			if event.pressed:
-				dragging = true
-				drag_start = event.position  # screen position
-			else:
-				dragging = false
-
-	elif event is InputEventMouseMotion and dragging:
-		var delta = drag_start - event.position
-		position += delta
-		drag_start = event.position
-
-func _process(delta):
-	var move = Vector2.ZERO
-
-	if Input.is_action_pressed("ui_right"):
-		move.x += 1
-	if Input.is_action_pressed("ui_left"):
-		move.x -= 1
-	if Input.is_action_pressed("ui_down"):
-		move.y += 1
-	if Input.is_action_pressed("ui_up"):
-		move.y -= 1
-
-	position += move.normalized() * speed * delta
+func _ready():
+	make_current()  # <--- RIGHT HERE
+	target_position = global_position
+	target_zoom = zoom
