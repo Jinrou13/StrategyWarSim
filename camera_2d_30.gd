@@ -1,10 +1,10 @@
 extends Camera2D
 
-@export var move_speed := 6.0             # Speed of smooth focus movement
-@export var manual_speed := 400.0         # Speed of manual WASD movement
-@export var zoom_speed := 10.0            # Speed of zoom lerp
-@export var default_zoom := Vector2(1, 1) # Normal zoom
-@export var focus_zoom := Vector2(0.75, 0.75) # Zoom when focusing a country
+@export var move_speed := 8.0
+@export var zoom_speed := 8.0
+@export var default_zoom := Vector2(1, 1)
+@export var focus_zoom := Vector2(4, 4) # ← higher number = zoomed in
+@export var manual_speed := 400
 
 var dragging := false
 var drag_origin := Vector2.ZERO
@@ -16,17 +16,13 @@ func _ready():
 	make_current()
 	target_position = global_position
 	target_zoom = zoom
-	print("📸 Camera is ready")
-	print("→ Path:", get_path())
-	print("→ In scene tree:", is_inside_tree())
-	print("→ Zoom:", zoom)
+	print("📸 Camera ready at:", global_position)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			dragging = event.pressed
 			drag_origin = event.position
-
 	elif event is InputEventMouseMotion and dragging:
 		var delta = drag_origin - event.position
 		global_position += delta
@@ -57,7 +53,7 @@ func _process(delta):
 	zoom = zoom.lerp(target_zoom, zoom_speed * delta)
 
 func focus_on(pos: Vector2):
-	print("Focusing on:", pos)
+	print("Focusing camera on:", pos)
 	manually_moved = false
 	target_position = pos
 	target_zoom = focus_zoom
